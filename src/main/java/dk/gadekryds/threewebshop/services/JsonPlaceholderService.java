@@ -1,4 +1,4 @@
-package dk.gadekryds.threewebshop.services.restinterfaces;
+package dk.gadekryds.threewebshop.services;
 
 import dk.gadekryds.threewebshop.domain.entities.Customer;
 import org.springframework.web.service.annotation.GetExchange;

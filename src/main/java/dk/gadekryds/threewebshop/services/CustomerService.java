@@ -1,6 +1,7 @@
 package dk.gadekryds.threewebshop.services;
 
 import dk.gadekryds.threewebshop.domain.entities.Customer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,6 @@ import java.util.List;
 
 @Service
 public class CustomerService {
-
     private final RestTemplate restTemplate;
 
     public CustomerService(RestTemplate restTemplate) {
@@ -24,7 +24,6 @@ public class CustomerService {
                 null,
                 new ParameterizedTypeReference<List<Customer>>() {
                 });
-
         return exchange.getBody();
     }
 }

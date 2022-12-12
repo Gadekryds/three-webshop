@@ -1,7 +1,6 @@
 package dk.gadekryds.threewebshop.domain.entities;
 
 import jakarta.persistence.*;
-import jdk.jfr.DataAmount;
 
 @Entity
 @Table(name = "customer")
@@ -26,5 +25,16 @@ public class Customer {
     }
     public void setName(String name) {
         this.name = name;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Address address;
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
