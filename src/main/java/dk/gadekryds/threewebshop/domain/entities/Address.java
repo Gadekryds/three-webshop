@@ -8,17 +8,13 @@ import java.util.List;
 @Entity
 @Table(name = "address")
 public class Address {
-
-    private String streetName;
-    private Integer streetNo;
-
     public Address() {
     }
 
-    public Address(Integer id, String streetName, Integer streetNo) {
+    public Address(Integer id, String streetName, String streetNo) {
         this.id = id;
-        this.streetName = streetName;
-        this.streetNo = streetNo;
+        this.street = streetName;
+        this.suite = streetNo;
     }
 
     @Id
@@ -26,6 +22,16 @@ public class Address {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "suite")
+    private String suite;
+
+    @OneToOne(mappedBy = "address")
+    @PrimaryKeyJoinColumn(name = "customer_id")
+    private Customer customer;
+    
     public Integer getId() {
         return id;
     }
@@ -34,35 +40,19 @@ public class Address {
         this.id = id;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="address_id")
-    private List<Customer> customers = new ArrayList<>();
-
-    public List<Customer> getCustomers() {
-        return customers;
+    public String getStreet() {
+        return suite;
     }
 
-    public void setCustomers(List<Customer> customers) {
-        this.customers = customers;
+    public void setSuite(String streetNo) {
+        this.suite = streetNo;
     }
 
-    public void addCustomer(Customer c) {
-        customers.add(c);
+    public String getSuite() {
+        return street;
     }
 
-    public Integer getStreetNo() {
-        return streetNo;
-    }
-
-    public void setStreetNo(Integer streetNo) {
-        this.streetNo = streetNo;
-    }
-
-    public String getStreetName() {
-        return streetName;
-    }
-
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
+    public void setStreet(String streetName) {
+        this.street = streetName;
     }
 }

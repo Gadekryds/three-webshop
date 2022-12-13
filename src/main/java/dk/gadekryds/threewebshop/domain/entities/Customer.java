@@ -1,8 +1,12 @@
 package dk.gadekryds.threewebshop.domain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
-@Entity
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity(name = "Customer")
 @Table(name = "customer")
 public class Customer {
     @Id
@@ -27,7 +31,8 @@ public class Customer {
         this.name = name;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
     public Address getAddress() {
