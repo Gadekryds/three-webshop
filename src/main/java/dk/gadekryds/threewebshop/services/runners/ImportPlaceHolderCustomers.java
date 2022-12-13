@@ -15,6 +15,14 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 public class ImportPlaceHolderCustomers {
 
     @Bean
+    CommandLineRunner setupPosts() {
+        return args -> {
+
+        };
+
+    }
+
+    //@Bean
     CommandLineRunner commandLineRunner(CustomerRepository customerRepository, AddressRepository addressRepository) {
         return args -> {
             WebClient client = WebClient.builder().baseUrl("https://jsonplaceholder.typicode.com").build();
